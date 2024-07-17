@@ -67,7 +67,7 @@ export function CourseForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Course Name</FormLabel>
+              <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input placeholder="Javascript for experts.." {...field} />
               </FormControl>
