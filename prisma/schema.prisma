@@ -41,7 +41,6 @@ model Course {
   hours String
   info  String
   
-
   Chapters Chapter[]
 
   uploadStatus uploadStatus @default(PENDING)
