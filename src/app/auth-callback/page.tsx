@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query"
 import { useRouter, useSearchParams } from "next/navigation"
 import { getAuthstatus } from "./actions"
 import { Loader2 } from "lucide-react"
-import { Suspense } from "react"
 
 const Loading = () => (
     <div className="text-center mt-5 text-3xl pb-4">
@@ -12,7 +11,7 @@ const Loading = () => (
     </div>
 );
 
-const AuthPage = () => {
+const Page = () => {
     const router = useRouter()
 
     const searchParams = useSearchParams()
@@ -40,11 +39,6 @@ const AuthPage = () => {
 
 
     return null
-}
-const Page = () => {
-    <Suspense fallback={<Loading/>}>
-        <AuthPage/>
-    </Suspense>
 }
 
 export default Page
