@@ -12,22 +12,26 @@ const Loading = () => (
     </div>
 );
 
-const AuthPage = async () => {
+const AuthPage = () => {
     const router = useRouter()
 
     const searchParams = useSearchParams()
     const origin = searchParams.get('origin')
     // get acces to origin 
 
-    const data = await getAuthstatus()
 
-    // const { data } = useQuery({
-    //     queryKey: ['auth-callback'],
-    //     queryFn: async () => await getAuthstatus(),
-    //     retry: true,
-    //     retryDelay: 500,
-    // })
-
+    const { data, error, isLoading } = useQuery({
+        queryKey: ['auth-callback'],
+        queryFn: async () => await getAuthstatus(),
+        retry: true,
+        retryDelay: 300,
+    })
+    if (isLoading) return <Loading />
+    if (error) {
+        console.error(error)
+        router.push('/')
+        return null
+    }
     if(data?.success){
         router.push('/dashboard')
     } else {
@@ -35,9 +39,7 @@ const AuthPage = async () => {
     }
 
 
-    return (
-        <Loading />
-    )
+    return null
 }
 const Page = () => {
     <Suspense fallback={<Loading/>}>
