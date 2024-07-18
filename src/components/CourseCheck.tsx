@@ -4,8 +4,9 @@ import { Button } from "./ui/button"
 import { Course } from "@prisma/client"
 import { Suspense, useCallback, useMemo, useState } from "react"
 import { addCourse } from "@/lib/data"
+import UpgradeButton from "./UpgradeButton"
 
-const CourseCheck = ({userCourses, course} : {userCourses : Course[], course : Course}) => {
+const CourseCheck = ({userCourses, course, userPremium} : {userCourses : Course[], course : Course, userPremium : Boolean}) => {
     const [loading, setLoading] = useState(false)
     const [updating, setUpdating] = useState(false)
     const inLibrary = useMemo(() => {
@@ -30,14 +31,26 @@ const CourseCheck = ({userCourses, course} : {userCourses : Course[], course : C
         }
     }
   return (
-    <div>
-            {inLibrary || updating ? 
-            <Button className=" my-6 bg-green-400 px-6 text-black hover:bg-green-500">In Library <Check className="h-4 w-4 ml-2"/></Button>
-            : 
-            <Button className=" my-6 bg-gray-300 px-6 text-black hover:text-white" onClick={handleAddCourse}>
-                {loading ?  <Loader2 className="m-auto animate-spin"/> : <>Add <PlusIcon className="h-4 w-4 ml-2"/></> }
-            </Button> 
-            }
+    <div className="my-6 px-6">
+            {inLibrary || updating ? (
+            <Button className=" bg-green-400 text-black hover:bg-green-500">
+                In Library
+                <Check className="h-4 w-4 ml-2" />
+            </Button>
+            ) : !userPremium && course.premium ? (
+            <UpgradeButton />
+            ) : (
+            <Button className=" bg-gray-300 text-black hover:text-white" onClick={handleAddCourse}>
+                {loading ? (
+                <Loader2 className="m-auto animate-spin" />
+                ) : (
+                <>
+                    Enroll
+                    <PlusIcon className="h-4 w-4 ml-2" />
+                </>
+                )}
+            </Button>
+            )}
             
     </div>
   )

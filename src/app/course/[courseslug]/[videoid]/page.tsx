@@ -1,3 +1,4 @@
+import { getUserCourse } from "@/app/dashboard/actions";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import MaxWidthWrapper from "@/components/ui/MaxWidthWrapper";
@@ -6,6 +7,7 @@ import { db } from "@/db";
 import { formatDuration } from "@/lib/utils";
 import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import React from 'react';
 
 interface Props {
@@ -34,7 +36,12 @@ const Page = async ({ params }: Props) => {
       courseId: course?.id,
   }
 })
-
+if (course) {
+  const check = await getUserCourse(course)
+  if (!check.success) {
+    redirect('/courses')
+  }
+}
   if (!video) {
     return <h2>No Video Found</h2>;
   }

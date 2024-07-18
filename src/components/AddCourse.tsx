@@ -19,6 +19,13 @@ import { adminAddCourse } from "@/lib/data"
 import { UploadButton } from "@/lib/uploadthing"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 
 const FormSchema = z.object({
@@ -29,6 +36,8 @@ const FormSchema = z.object({
   hours: z.string(),
   info: z.string(),
   url : z.string(),
+  level: z.string(),
+  premium: z.boolean(),
   key : z.string(),
   // thumbnail: z.string(),
 
@@ -44,6 +53,8 @@ export function CourseForm() {
       hours: "",
       info: "",
       url: "",
+      level: "Beginner",
+      premium: false,
       key: "",
       // thumbnail: "",
     },
@@ -120,6 +131,51 @@ export function CourseForm() {
             </FormItem>
           )}
         />
+         <FormField
+          control={form.control}
+          name="level"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Level</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value.toString()}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="beginner">Beginner</SelectItem>
+                  <SelectItem value="intermediate">Intermediate</SelectItem>
+                  <SelectItem value="advanced">Advanced</SelectItem>
+                  <SelectItem value="expert">Expert</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+          <FormField
+          control={form.control}
+          name="premium"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Free or Premium Course</FormLabel>
+              <Select onValueChange={(value) => field.onChange(value === 'true')} defaultValue={field.value.toString()}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="false">Free</SelectItem>
+                  <SelectItem value="true">Premium</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+         
         <FormField
           control={form.control}
           name="url"

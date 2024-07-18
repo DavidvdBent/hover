@@ -1,3 +1,4 @@
+import { getUserCourse } from '@/app/dashboard/actions'
 import { Button } from '@/components/ui/button'
 import MaxWidthWrapper from '@/components/ui/MaxWidthWrapper'
 import { Progress } from '@/components/ui/progress'
@@ -28,6 +29,13 @@ const page = async({params}: Props) => {
           slug: courseslug,
       }
   })
+  if (course) {
+    const check = await getUserCourse(course)
+    if (!check.success) {
+      redirect('/courses')
+    }
+  }
+
   const chapters =  await db.chapter.findMany({
     where: {
         courseId: course?.id

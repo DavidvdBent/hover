@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import MaxWidthWrapper from '@/components/ui/MaxWidthWrapper'
 import Link from 'next/link'
 import { Button, buttonVariants } from '@/components/ui/button'
-import { LoginLink, LogoutLink, getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
+import { LoginLink, LogoutLink, RegisterLink, getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import { LogOutIcon, Plus } from 'lucide-react'
 
 const Navbar = async () => {
@@ -38,8 +38,8 @@ const Navbar = async () => {
                         <LoginLink className={buttonVariants({
                             variant: 'ghost',
                             size: 'sm'})}>Sign in</LoginLink>
-                        <LoginLink className={buttonVariants({
-                            size: 'sm'})}>Register</LoginLink>
+                        <RegisterLink className={buttonVariants({
+                            size: 'sm'})}>Register</RegisterLink>
                             </>
                     ) : (
                         <>

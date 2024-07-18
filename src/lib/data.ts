@@ -104,6 +104,8 @@ const FormSchema = z.object({
     hours: z.string(),
     info: z.string(),
     url: z.string(),
+    level: z.string(),
+    premium: z.boolean(),
     key: z.string()
 });
 
@@ -116,6 +118,8 @@ export async function adminAddCourse(data: z.infer<typeof FormSchema>) {
                 hours: data.hours,
                 info: data.info,
                 url: data.url,
+                level: data.level,
+                premium: data.premium,
                 key: data.key
             }
         });

@@ -40,6 +40,9 @@ model Course {
   slug  String @unique
   hours String
   info  String
+  level String
+  premium Boolean
+
   
   Chapters Chapter[]
 

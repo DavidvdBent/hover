@@ -2,6 +2,7 @@
 
 import { db } from "@/db"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
+import { Course } from "@prisma/client"
 
 export const getUserFiles = async () => {
     const { getUser } = getKindeServerSession()
@@ -47,6 +48,37 @@ export const getUserCourses = async () => {
             }
         });
         return courses;
+    } catch (error) {
+        console.error(error);
+        return { success: false, error: 'Failed to fetch user courses' };
+    }
+}
+
+export const getUserCourse = async (course : Course) => {
+    const { getUser } = getKindeServerSession()
+    const user = await getUser()
+
+    if (!user?.id) {
+        return { success: false }
+    }
+
+    try {
+        const check = await db.course.findFirst({
+            where: {
+                    id: course.id,
+                    
+                User: {
+                    some: {
+                        id: user.id
+                    }
+                }
+            }
+        });
+        if (check) {
+            return { success: true, course };
+          } else {
+            return { success: false, message: 'User is not enrolled in the course' };
+          }
     } catch (error) {
         console.error(error);
         return { success: false, error: 'Failed to fetch user courses' };
