@@ -123,11 +123,12 @@ export async function adminAddCourse(data: z.infer<typeof FormSchema>) {
                 key: data.key
             }
         });
-        redirect('/courses');
-        return { success: true };
-    } catch (error) {
+        return  { success: true};
+    } catch (error) { 
         console.error(error);
         return { success: false, error: 'Failed to add course' };
+    }finally {
+        redirect("/courses")
     }
 }
 
@@ -179,7 +180,7 @@ export async function getVideos (chapter: Chapter) {
                         title: data.title,
                         duration: data.duration,
                         url: data.link,
-                        info: '',
+                        info: data.info,
                         chapterId : data.chapterId
                     }
                 })

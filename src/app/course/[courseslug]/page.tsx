@@ -46,7 +46,7 @@ const page = async({params}: Props) => {
       <MaxWidthWrapper>
       {course ?
       <>
-      <h2 className="text-center mt-5 text-3xl pt-4 pb-12">{course.name}</h2>
+      <h2 className="text-center mt-12 text-5xl pt-4 pb-12">{course.name}</h2>
           <div className=' rounded-2xl p-4 grid grid-cols-2 mx-auto'>
             <div>
             <Image src={course.url} alt=''width={500} height={500} className='rounded-2xl'></Image>

@@ -26,6 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { redirect } from "next/navigation"
 
 
 const FormSchema = z.object({
@@ -67,7 +68,6 @@ export function CourseForm() {
       key: uploadData.key,
     }
     adminAddCourse(finalData)
-    
   }
 
   return (

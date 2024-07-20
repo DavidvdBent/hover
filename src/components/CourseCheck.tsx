@@ -24,7 +24,7 @@ const CourseCheck = ({userCourses, course, userPremium} : {userCourses : Course[
                 // Simulate a short delay before showing the "In Library" button
                 setTimeout(() => {
                     setUpdating(false);
-                }, 300);
+                }, 600);
             } finally {
                 setLoading(false)
             }      
@@ -43,7 +43,10 @@ const CourseCheck = ({userCourses, course, userPremium} : {userCourses : Course[
             <Button className=" bg-gray-300 text-black hover:text-white" onClick={handleAddCourse}>
                 {loading ? (
                 <Loader2 className="m-auto animate-spin" />
-                ) : (
+                ) : course.premium ? <>
+                <p className="text-blue-500">Enroll</p>
+                <PlusIcon className="h-4 w-4 ml-2 text-blue-500" />
+            </>: (
                 <>
                     Enroll
                     <PlusIcon className="h-4 w-4 ml-2" />

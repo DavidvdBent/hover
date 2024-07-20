@@ -17,6 +17,7 @@ import {
   } from "@/components/ui/dialog"
 import { DialogClose } from "@radix-ui/react-dialog"
 import { formatDuration } from "@/lib/utils"
+import { Textarea } from "./ui/textarea"
   
 
 const Videos = ({chapter} : {chapter: Chapter}) => {
@@ -50,11 +51,13 @@ const Videos = ({chapter} : {chapter: Chapter}) => {
         const title = formData.get('title')
         const duration = Number(formData.get('duration'))
         const link = formData.get('link')
+        const info = formData.get('info')
         const data = {
             title: title,
             duration: duration,
             link: link,
-            chapterId : chapter.id
+            chapterId : chapter.id,
+            info: info
         }
         const query = await addVideoDB(data)
         if (query.success && query.video) {
@@ -105,6 +108,8 @@ const Videos = ({chapter} : {chapter: Chapter}) => {
                 <Input className="my-4" placeholder="Duration in Seconds" name='duration'/>
                 <label>Video Link:</label>
                 <Input className="my-4" placeholder="youtube.com/course/htmlhandling" name='link'/>
+                <label>Information:</label>
+                <Textarea className="my-4" placeholder="This Video Demonstrates how to ..." name='info'/>
                 <DialogFooter>
                     <DialogClose asChild>
                         <Button className="my-4" type="submit"> Add Video</Button>

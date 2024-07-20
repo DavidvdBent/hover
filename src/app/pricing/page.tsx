@@ -19,26 +19,20 @@ const Page = async () => {
   const pricingItems = [
     {
       plan: 'Free',
-      tagline: 'For small side projects.',
-      quota: 10,
+      tagline: 'Curious about our content?',
+      quota: 2,
       features: [
         {
-          text: '5 pages per PDF',
-          footnote:
-            'The maximum amount of pages per PDF-file.',
+          text: 'Free Starter Courses',
         },
         {
-          text: '4MB file size limit',
-          footnote:
-            'The maximum file size of a single PDF file.',
+          text: 'Advertising Free',
         },
         {
           text: 'Mobile-friendly interface',
         },
         {
-          text: 'Higher-quality responses',
-          footnote:
-            'Better algorithmic responses for enhanced content quality',
+          text: 'High-quality Premium Courses',
           negative: true,
         },
         {
@@ -49,26 +43,20 @@ const Page = async () => {
     },
     {
       plan: 'Pro',
-      tagline: 'For larger projects with higher needs.',
-      quota: PLANS.find((p) => p.slug === 'pro')!.quota,
+      tagline: 'Become A Pro in no Time',
+      quota: 3,
       features: [
         {
-          text: '25 pages per PDF',
-          footnote:
-            'The maximum amount of pages per PDF-file.',
+          text: 'Free Starter Courses',
         },
         {
-          text: '16MB file size limit',
-          footnote:
-            'The maximum file size of a single PDF file.',
+          text: 'Advertising Free',
         },
         {
           text: 'Mobile-friendly interface',
         },
         {
-          text: 'Higher-quality responses',
-          footnote:
-            'Better algorithmic responses for enhanced content quality',
+          text: 'High-quality Premium Courses',
         },
         {
           text: 'Priority support',
@@ -79,14 +67,12 @@ const Page = async () => {
 
   return (
     <>
-      <MaxWidthWrapper className='mb-8 mt-24 text-center max-w-5xl'>
-        <div className='mx-auto mb-10 sm:max-w-lg'>
-          <h1 className='text-6xl font-bold sm:text-7xl'>
-            Pricing
-          </h1>
+      <MaxWidthWrapper className='mb-8 mt-10 text-center max-w-5xl pb-20'>
+        <div className='mx-auto sm:max-w-lg'>
+          <h2 className="text-center mt-5 text-5xl pb-4">Pricing</h2>
           <p className='mt-5 text-gray-600 sm:text-lg'>
-            Whether you&apos;re just trying out our service
-            or need more, we&apos;ve got you covered.
+            Whether you&apos;re just trying out our courses
+            or you want to become a pro.
           </p>
         </div>
 
@@ -134,8 +120,7 @@ const Page = async () => {
                     <div className='flex h-20 items-center justify-center border-b border-t border-gray-200 bg-gray-50'>
                       <div className='flex items-center space-x-1'>
                         <p>
-                          {quota.toLocaleString()} PDFs/mo
-                          included
+                          {quota.toLocaleString()} {plan} Courses
                         </p>
 
        
@@ -144,7 +129,7 @@ const Page = async () => {
 
                     <ul className='my-10 space-y-5 px-8'>
                       {features.map(
-                        ({ text, footnote, negative }) => (
+                        ({ text, negative }) => (
                           <li
                             key={text}
                             className='flex space-x-5'>
@@ -155,21 +140,7 @@ const Page = async () => {
                                 <Check className='h-6 w-6 text-blue-500' />
                               )}
                             </div>
-                            {footnote ? (
-                              <div className='flex items-center space-x-1'>
-                                <p
-                                  className={cn(
-                                    'text-gray-600',
-                                    {
-                                      'text-gray-400':
-                                        negative,
-                                    }
-                                  )}>
-                                  {text}
-                                </p>
-              
-                              </div>
-                            ) : (
+                            { (
                               <p
                                 className={cn(
                                   'text-gray-600',
@@ -190,20 +161,20 @@ const Page = async () => {
                       {plan === 'Free' ? (
                         <Link
                           href={
-                            user ? '/dashboard' : '/sign-in'
+                            user ? '/dashboard' : '/sign-up'
                           }
                           className={buttonVariants({
                             className: 'w-full',
                             variant: 'secondary',
                           })}>
-                          {user ? 'Upgrade now' : 'Sign up'}
+                          {user ? 'Our Courses' : 'Sign up'}
                           <ArrowRight className='h-5 w-5 ml-1.5' />
                         </Link>
                       ) : user ? (
                         <UpgradeButton/>
                       ) : (
                         <Link
-                          href='/sign-in'
+                          href='/sign-up'
                           className={buttonVariants({
                             className: 'w-full',
                           })}>

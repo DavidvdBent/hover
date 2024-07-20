@@ -32,12 +32,12 @@ const BillingForm = ({subscriptionPlan} :  BillingFormProps) => {
             </CardHeader>
             <CardFooter className="flex flex-col items-start space-y-2 md:flex-row md:justify-between space-x-0">
                 <Button type="submit">
-                    {subscriptionPlan.isSubscribed ? "managed Subscription" : "Upgrade to Premium"}
+                    {subscriptionPlan.isSubscribed ? "Manage Subscription" : "Upgrade to Premium"}
                 </Button>
 
                 {subscriptionPlan.isSubscribed ? <p className="rounded-full text-xs font-medium">
                     {subscriptionPlan.isCanceled ? 'Your plan will be canceled on ' : 'Your plan renews on '}
-                    {format(subscriptionPlan.stripeCurrentPeriodEnd!, "dd.MM.yyyyy")}
+                    {format(subscriptionPlan.stripeCurrentPeriodEnd!, "dd.MM.yyyy")}
                 </p> : null}
             </CardFooter>
         </Card>

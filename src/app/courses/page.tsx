@@ -17,7 +17,7 @@ const page = async ({searchParams} : {searchParams? : {
   return (
     <div>
       <MaxWidthWrapper>
-      <h2 className="text-center mt-5 text-3xl pb-4">Courses</h2>
+      <h2 className="text-center mt-14 text-5xl pb-4">Courses</h2>
       <div className="flex justify-between mt-8 pb-2 border-b-2">
             <Search />
         <div>

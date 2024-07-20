@@ -86,8 +86,8 @@ const AllCourses = async({query, currentPage} : {
             <h2 className="mt-4 font-semibold text-lg text-center">{course.name}</h2>
             <p className="mt-2">{course.info.substring(0,175)}...</p>
             <div className='flex gap-6 justify-center'>
-                <RegisterLink><Button className=" my-6  px-6" variant={'ghost'}>Register<LogIn className='h-4 w-4 ml-2'/></Button></RegisterLink>
-                <Button className=" my-6 bg-gray-700 px-14">Explore <ArrowRight className="h-4 w-4 ml-2"/></Button>
+                {/* <RegisterLink><Button className=" my-6  px-6 shadow-md" variant={'ghost'}>Register<LogIn className='h-4 w-4 ml-2'/></Button></RegisterLink> */}
+                <Link href={`/overview/course/${course.slug}`}><Button className=" my-6 bg-gray-700 px-14">Explore <ArrowRight className="h-4 w-4 ml-2"/></Button></Link>
             </div>
             <div className="flex justify-between mt-10">
                 <div className=" flex gap-2 items-center">
