@@ -33,24 +33,24 @@ interface Props {
     <MaxWidthWrapper>
       {course ?
       <>
-      <h2 className="text-center mt-5 text-3xl pt-4 pb-12">{course.name}</h2>
-          <div className=' rounded-2xl p-4 grid grid-cols-2 mx-auto'>
-            <div>
-            <Image src={course.url} alt=''width={500} height={500} className='rounded-2xl'></Image>
+      <h2 className="text-center mt-5 text-3xl pt-4 pb-4 lg:pb-12">{course.name}</h2>
+          <div className=' rounded-2xl p-4 grid grid-cols-1 lg:grid-cols-2 mx-auto'>
+            <div className="mx-auto">
+            <Image src={course.url} alt=''width={600} height={600} className='rounded-2xl'></Image>
             </div>
 
-          <div className='ml-8'>
+          <div className=' ml-0 lg:ml-8 text-center lg:text-start mt-8 lg:mt-0'>
             <h3 className='pb-2 text-lg text-gray-600 text-semibold'>Information</h3>
             <p className=''>{course.info}...</p>
             <div className='flex items-center gap-2 mt-4'>
-              <h3 className='py-2 text-lg text-gray-600 text-semibold'><Clock className='h-4 w-4'/></h3>
-              <p className='py-2 text-lg text-gray-900 text-semibold'>{course.hours} Hours</p>
+              <h3 className='py-2 text-lg text-gray-600 text-semibold hidden lg:block '><Clock className='h-4 w-4'/></h3>
+              <p className='py-2 text-lg text-gray-900 text-semibold mx-auto flex items-center'><Clock className='h-4 w-4 mr-1.5 block lg:hidden'/>{course.hours} Hours</p>
               {user ? 
-                <Link href='/dashboard'><Button variant={'ghost'} className='ml-16 border-2'>Go To Dashboard<ArrowRight className='h-4 w-4 ml-4'/></Button></Link>
-            :
-                <LoginLink><Button variant={'ghost'} className='ml-16 border-2'>Log In <ArrowRight className='h-4 w-4 ml-4'/></Button></LoginLink>
-            }
-            </div>
+                <Link href='/dashboard'><Button variant={'ghost'} className='ml-16 border-2 hidden lg:block '>Go To Dashboard<ArrowRight className='h-4 w-4 ml-4'/></Button></Link>
+                :
+                <LoginLink className="hidden lg:block"><Button variant={'ghost'} className='ml-16 border-2'>Log In <ArrowRight className='h-4 w-4 ml-4'/></Button></LoginLink>
+              }
+              </div>
           </div>
           </div>
       

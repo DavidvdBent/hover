@@ -13,18 +13,12 @@ interface BillingFormProps {
 }
 
 const BillingForm = ({subscriptionPlan} :  BillingFormProps) => {
-    // const {url} = await createStripeSession()
-    // if (url) {
-    //     window.location.href = url
-    // } else {
-    //     return (<h2>Something went wrong, please try again</h2>)
-    // }
   return (
-    <MaxWidthWrapper className="max-w-5xl">
+    <MaxWidthWrapper className="max-w-5xl h-[69vh]">
         <form className="mt-12" onSubmit={(e) => {
             e.preventDefault()
             createStripeSession()
-        }}></form>
+        }}>
         <Card>
             <CardHeader>
                 <CardTitle>Subscription Plan</CardTitle>
@@ -41,6 +35,7 @@ const BillingForm = ({subscriptionPlan} :  BillingFormProps) => {
                 </p> : null}
             </CardFooter>
         </Card>
+        </form>
     </MaxWidthWrapper>
 
       

@@ -8,6 +8,7 @@ import { getUserCourses, getUserFiles } from '@/app/dashboard/actions'
 import { getKindeServerSession, RegisterLink } from '@kinde-oss/kinde-auth-nextjs/server'
 import Link from 'next/link'
 import { getUserSubscriptionPlan } from '@/lib/stripe'
+import { cn } from '@/lib/utils'
 
 
 
@@ -27,9 +28,15 @@ const AllCourses = async({query, currentPage} : {
     if (authenticated) {
         const userCourses = await getUserFiles()
         return (
-            <div className="grid grid-cols-2 gap-8 pt-8 mx-6 justify-around">
-        {allCourses?.map((course  :any, index : any)=> (
-            <div key={index} className={`border-2 m-auto  max-w-[500px] rounded-lg p-8 shadow-md mb-8 ${course.premium ? `border-blue-200` : ``}`}>
+            <div className='pt-12 grid grid-cols-1 gap-10 lg:grid-cols-2'>
+            {allCourses?.map((course  :any, index : any)=> (
+            <div key={index} className={`border-2 m-auto  max-w-[500px] h-full rounded-lg p-8 shadow-md mb-8 ${course.premium ? `border-blue-200` : ``}`}>
+                {course.premium ? 
+            <div className='absolute -top-5 left-0 right-0 mx-auto w-32 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 px-3 py-2 text-sm font-medium text-white'>
+                       <p className=' flex justify-around items-center gap-4'>Premium <Crown className='h-4 w-4'/></p>
+                      </div>
+            
+            : null}
                 <Image src={course.url} height={500} width={500} alt='' className="rounded-lg mx-auto w-400 h-300 aspect-video"/>
                 <h2 className="mt-4 font-semibold text-lg text-center">{course.name}</h2>
                 <p className="mt-2">{course.info.substring(0,175)}...</p>
@@ -79,12 +86,19 @@ const AllCourses = async({query, currentPage} : {
     }
 
     return (
-        <div className="grid grid-cols-2 gap-8 pt-8 mx-6 justify-around">
+        <div className='pt-12 grid grid-cols-1 gap-10 lg:grid-cols-2'>
     {allCourses?.map((course  :any, index : any)=> (
-        <div key={index} className={`border-2 m-auto  max-w-[500px] rounded-lg p-8 shadow-md mb-8 ${course.premium ? `border-blue-200` : ``}`}>
-            <Image src={course.url} height={500} width={500} alt='' className="rounded-lg mx-auto w-400 h-300 aspect-video"/>
+        <div key={index} className={`relative border-2 m-auto  max-w-[500px] h-full rounded-lg p-8 shadow-md mb-8 ${course.premium ? `border-blue-200` : ``}`}>
+            
+            {course.premium ? 
+            <div className='absolute -top-5 left-0 right-0 mx-auto w-32 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 px-3 py-2 text-sm font-medium text-white'>
+                       <p className=' flex justify-around items-center gap-4'>Premium <Crown className='h-4 w-4'/></p>
+                      </div>
+            
+            : null}
+            <Image src={course.url} height={500} width={500} alt='' className="rounded-lg mx-auto w-400 h-300 aspect-video object-cover"/>
             <h2 className="mt-4 font-semibold text-lg text-center">{course.name}</h2>
-            <p className="mt-2">{course.info.substring(0,175)}...</p>
+            <p className="mt-2 min-h-28">{course.info.substring(0,175)}...</p>
             <div className='flex gap-6 justify-center'>
                 {/* <RegisterLink><Button className=" my-6  px-6 shadow-md" variant={'ghost'}>Register<LogIn className='h-4 w-4 ml-2'/></Button></RegisterLink> */}
                 <Link href={`/overview/course/${course.slug}`}><Button className=" my-6 bg-gray-700 px-14">Explore <ArrowRight className="h-4 w-4 ml-2"/></Button></Link>

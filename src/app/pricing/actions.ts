@@ -8,6 +8,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 export const createStripeSession = async() => {
     const { getUser } = getKindeServerSession()
     const user = await getUser()
+    console.log('creating stripe session')
 
     if (!user?.id || !user.email) {
         throw new Error('Unauthorized')

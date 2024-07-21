@@ -30,9 +30,9 @@ const Dashboard = () => {
         <p className='mt-5'>No courses found in your account</p>
         <Link href='/courses'><Button className='mt-4'>Enroll in our courses <ArrowRight className='ml-2 h-2 w-2'></ArrowRight></Button></Link>
        </div>): null }
-       <div className="grid grid-cols-2 gap-8 pt-8 mx-6 justify-around">
+       <div className='pt-12 grid grid-cols-1 gap-10 lg:grid-cols-2'>
        {courses?.map((course : any, index : any)=> (
-        <div key={index} className="border-2 m-auto  max-w-[500px] rounded-lg p-8 shadow-md mb-8">
+        <div key={index} className="border-2 m-auto  h-full max-w-[500px] rounded-lg p-8 shadow-md mb-8">
         <Image src={course.url} height={500} width={500} alt='' className="rounded-lg mx-auto w-400 h-300"/>
         <h2 className="mt-4 font-semibold text-lg text-center">{course.name}</h2>
         <p className="mt-2">{course.info.substring(0,175)}...</p>
