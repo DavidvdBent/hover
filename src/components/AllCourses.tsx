@@ -28,7 +28,7 @@ const AllCourses = async({query, currentPage} : {
     if (authenticated) {
         const userCourses = await getUserFiles()
         return (
-            <div className='pt-12 grid grid-cols-1 gap-10 lg:grid-cols-2'>
+            <div className='pt-12 grid grid-cols-1 gap-10 lg:grid-cols-2 mb-12'>
             {allCourses?.map((course  :any, index : any)=> (
             <div key={index} className={`border-2 m-auto  max-w-[500px] h-full rounded-lg p-8 shadow-md mb-8 ${course.premium ? `border-blue-200` : ``}`}>
                 {course.premium ? 
@@ -49,7 +49,7 @@ const AllCourses = async({query, currentPage} : {
                     {user && user.email === process.env.KINDE_ADMIN ? 
                     <Link href={`/admin/edit/${course.slug}`}><Button className=" my-6 bg-gray-700 px-14">Edit<Edit className="h-4 w-4 ml-2"/></Button></Link>
                     : 
-                    <Button className=" my-6 bg-gray-700 px-14">Explore <ArrowRight className="h-4 w-4 ml-2"/></Button>
+                    <Link href={`/overview/course/${course.slug}`}><Button className=" my-6 bg-gray-700 px-14">Explore <ArrowRight className="h-4 w-4 ml-2"/></Button></Link>
                     }
                 </div>
                 <div className="flex justify-between mt-10">

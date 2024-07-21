@@ -100,6 +100,7 @@ if (course) {
           <p className="font-semibold py-4">Duration</p>
           <p className="text-gray-800 w-[75%] text-center m-auto">{formatDuration(video.duration)}</p>
         </div>
+        <h2 className="text-center mt-5 text-3xl pt-4 pb-12">Curriculum</h2>
         {course ?
           <VideoTable course = {course} chapters = {chapters} />
         : <></> }

@@ -42,14 +42,8 @@ interface Props {
           <div className=' ml-0 lg:ml-8 text-center lg:text-start mt-8 lg:mt-0'>
             <h3 className='pb-2 text-lg text-gray-600 text-semibold'>Information</h3>
             <p className=''>{course.info}...</p>
-            <div className='flex items-center gap-2 mt-4'>
-              <h3 className='py-2 text-lg text-gray-600 text-semibold hidden lg:block '><Clock className='h-4 w-4'/></h3>
-              <p className='py-2 text-lg text-gray-900 text-semibold mx-auto flex items-center'><Clock className='h-4 w-4 mr-1.5 block lg:hidden'/>{course.hours} Hours</p>
-              {user ? 
-                <Link href='/dashboard'><Button variant={'ghost'} className='ml-16 border-2 hidden lg:block '>Go To Dashboard<ArrowRight className='h-4 w-4 ml-4'/></Button></Link>
-                :
-                <LoginLink className="hidden lg:block"><Button variant={'ghost'} className='ml-16 border-2'>Log In <ArrowRight className='h-4 w-4 ml-4'/></Button></LoginLink>
-              }
+            <div className='flex items-center lg:items-start gap-2 mt-4'>
+              <p className='py-2 text-lg text-gray-900 text-semibold mx-auto lg:mx-0 flex items-center'><Clock className='h-4 w-4 mr-1.5'/>{course.hours} Hours</p>
               </div>
           </div>
           </div>

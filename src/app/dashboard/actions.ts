@@ -1,6 +1,7 @@
 "use server"
 
 import { db } from "@/db"
+import { getUserSubscriptionPlan } from "@/lib/stripe"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { Course } from "@prisma/client"
 
@@ -22,6 +23,21 @@ export const getUserFiles = async () => {
                 }
             }
         });
+        // const subscriptionPlan = await getUserSubscriptionPlan()
+        // const userPremium = subscriptionPlan.isSubscribed
+
+        // if (!userPremium) {
+        //     for (const course of courses) {
+        //       if (course.premium) {
+        //         await db.userCourse.delete({
+        //           where: {
+        //             User: user,
+        //             courseId: course.id
+        //           }
+        //         });
+        //       }
+        //     }
+        //   }
         return courses;
     } catch (error) {
         console.error(error);

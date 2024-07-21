@@ -21,7 +21,7 @@ const page = async ({searchParams} : {searchParams? : {
       <div className="flex justify-between mt-8 pb-2 border-b-2">
             <Search />
         <div>
-        <ToggleGroup type="multiple">
+        {/* <ToggleGroup type="multiple">
         <ToggleGroupItem value="bold" aria-label="Toggle bold" className="mx-4">
             <Bold className="h-4 w-4 text-gray-500" />
         </ToggleGroupItem>
@@ -31,7 +31,7 @@ const page = async ({searchParams} : {searchParams? : {
         <ToggleGroupItem value="underline" aria-label="Toggle underline" className="mx-4">
             <Underline className="h-4 w-4 text-gray-500" />
         </ToggleGroupItem>
-        </ToggleGroup>
+        </ToggleGroup> */}
         </div>
       </div>
       <AllCourses query={query} currentPage={currentPage}/>
