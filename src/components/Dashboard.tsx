@@ -17,7 +17,7 @@ const Dashboard = () => {
 
     if (isLoading) {
         return (
-        <div className='mt-20'>
+        <div className='mt-20 mb-[79vh]'>
             <Loader2 className='h-8 w-8 mx-auto animate-spin'/>
             <p className='text-center'>Loading Courses...</p>
         </div>
@@ -26,7 +26,7 @@ const Dashboard = () => {
   return (
     <MaxWidthWrapper>
        <h2 className="text-center mt-14 text-5xl pb-4">My Dashboard</h2>
-       {courses && courses?.length < 1 ? (<div className='text-center mt-4'>
+       {courses && courses?.length < 1 ? (<div className='text-center mt-4 mb-[39vh]'>
         <p className='mt-5'>No courses found in your account</p>
         <Link href='/courses'><Button className='mt-4'>Enroll in our courses <ArrowRight className='ml-2 h-2 w-2'></ArrowRight></Button></Link>
        </div>): null }

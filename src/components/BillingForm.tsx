@@ -6,6 +6,8 @@ import MaxWidthWrapper from "./ui/MaxWidthWrapper"
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card"
 import { Button } from "./ui/button"
 import { format } from 'date-fns'
+import UpgradeButton from "./UpgradeButton"
+import BillingButton from "./BillingButton"
 
 
 interface BillingFormProps {
@@ -14,20 +16,16 @@ interface BillingFormProps {
 
 const BillingForm = ({subscriptionPlan} :  BillingFormProps) => {
   return (
-    <MaxWidthWrapper className="max-w-5xl h-[69vh]">
-        <form className="mt-12" onSubmit={(e) => {
-            e.preventDefault()
-            createStripeSession()
-        }}>
+
+    <MaxWidthWrapper className="max-w-5xl h-[76vh] pt-8">
+        <div className="pt-16"/>
         <Card>
             <CardHeader>
-                <CardTitle>Subscription Plan</CardTitle>
+                <CardTitle className="py-6">Subscription Plan</CardTitle>
                 <CardDescription>You are currently on the <strong>{subscriptionPlan.name}</strong> plan.</CardDescription>
             </CardHeader>
             <CardFooter className="flex flex-col items-start space-y-2 md:flex-row md:justify-between space-x-0">
-                <Button type="submit">
-                    {subscriptionPlan.isSubscribed ? "Manage Subscription" : "Upgrade to Premium"}
-                </Button>
+                <BillingButton></BillingButton>
 
                 {subscriptionPlan.isSubscribed ? <p className="rounded-full text-xs font-medium">
                     {subscriptionPlan.isCanceled ? 'Your plan will be canceled on ' : 'Your plan renews on '}
@@ -35,7 +33,6 @@ const BillingForm = ({subscriptionPlan} :  BillingFormProps) => {
                 </p> : null}
             </CardFooter>
         </Card>
-        </form>
     </MaxWidthWrapper>
 
       

@@ -8,6 +8,7 @@ import { db } from '@/db'
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import { ArrowRight, Clock } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
@@ -35,7 +36,17 @@ const page = async({params}: Props) => {
       redirect('/courses')
     }
   }
-
+  const firstChapter = await db.chapter.findFirst({
+    where: {
+      courseId : course?.id
+    }
+  })
+  const firstVideo = await db.video.findFirst({
+    where: {
+      chapterId : firstChapter?.id
+    }
+  })
+  
   const chapters =  await db.chapter.findMany({
     where: {
         courseId: course?.id
@@ -65,13 +76,12 @@ const page = async({params}: Props) => {
                 <h3 className='py-2 text-lg text-gray-600 text-semibold mr-2'><Clock className='h-4 w-4'/></h3>
                 <p className='py-2 text-lg text-gray-900 text-semibold'>{course.hours} Hours</p>
               </div>
-            <Button variant={'ghost'} className='lg:ml-0 ml-0 border-2 w-[200px] mx-auto mt-6 lg:mt-0'>Start The Course <ArrowRight className='h-4 w-4 ml-4'/></Button>
+            <Link href={`/course/${course.slug}/${firstVideo?.id}`}><Button variant={'ghost'} className='lg:ml-0 ml-0 border-2 w-[200px] mx-auto mt-6 lg:mt-0'>Start The Course <ArrowRight className='h-4 w-4 ml-4'/></Button></Link>
             </div>
           </div>
           </div>
       
       <h2 className="text-center mt-5 text-3xl pt-4 pb-12">Curriculum</h2>
-
       <VideoTable course = {course} chapters = {chapters} />
        </>
        : null}

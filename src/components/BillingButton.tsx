@@ -4,7 +4,7 @@ import { Button } from "./ui/button"
 import { createStripeSession } from "@/app/pricing/actions"
 import { User } from "@prisma/client"
 
-const UpgradeButton = () => {
+const BillingButton = () => {
     const handleClick = async () => {
        const {url} = await createStripeSession()
        if (url) {
@@ -12,12 +12,11 @@ const UpgradeButton = () => {
        }
     }
   return (
-    <Button className="w-full"
-    onClick={handleClick}
-    >Upgrade now
-       <ArrowRight className="h-5 w-5 ml-1.5"/>
+    <Button onClick={handleClick}
+    >
+     Manage Subscription  <ArrowRight className="h-5 w-5 ml-1.5"/>
     </Button>
   )
 }
 
-export default UpgradeButton
+export default BillingButton

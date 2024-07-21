@@ -8,7 +8,6 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 export const createStripeSession = async() => {
     const { getUser } = getKindeServerSession()
     const user = await getUser()
-    console.log('creating stripe session')
 
     if (!user?.id || !user.email) {
         throw new Error('Unauthorized')
@@ -24,14 +23,19 @@ export const createStripeSession = async() => {
         throw new Error('Unauthorized')
     }
     const subscriptionPlan = await getUserSubscriptionPlan()
-    if(subscriptionPlan.isSubscribed && dbUser.stripeCustomerId) {
-        const stripeSession = await stripe.billingPortal.sessions.create({
+    
+    if (
+        subscriptionPlan.isSubscribed &&
+        dbUser.stripeCustomerId
+      ) {
+        const stripeSession =
+          await stripe.billingPortal.sessions.create({
             customer: dbUser.stripeCustomerId,
-            return_url: billingUrl
-        })
+            return_url: billingUrl,
+          })
 
-        return {url : stripeSession.url}
-    }
+        return { url: stripeSession.url }
+      }
     const stripeSession = await stripe.checkout.sessions.create({
         success_url: billingUrl,
         cancel_url: billingUrl,
