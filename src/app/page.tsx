@@ -35,7 +35,7 @@ export default function Home() {
           <div>
             <DollarSign className="text-blue-500 text-2xl mx-auto my-3"/>
             <h3 className="text-blue-500 text-xl sm:text-2xl border-b-2 border-gray-400 pb-4 w-[250px] mx-auto">Refund</h3>
-            <p className="text-gray-600 sm:text-lg mt-4 w-[250px] sm:w-[400px] mx-auto md:mx-0 md:w-auto">Our Refund policy guarantees your satisfaction. If our courses don't meet your expectations, we offer a hassle-free refund process. We are committed to ensuring you receive the best value and learning experience, risk-free.</p>
+            <p className="text-gray-600 sm:text-lg mt-4 w-[250px] sm:w-[400px] mx-auto md:mx-0 md:w-auto">Our Refund policy guarantees your satisfaction. If our courses don&apos;t meet your expectations, we offer a hassle-free refund process. We are committed to ensuring you receive the best value and learning experience, risk-free.</p>
           </div>
         </div>
         <Image className="mt-28 mb-10 rounded-2xl"height={1160} width={1160} quality={100} src='/max.jpg' alt=""/>
