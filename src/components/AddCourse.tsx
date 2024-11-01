@@ -15,9 +15,9 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "./ui/textarea"
+import { useState } from "react"
 import { adminAddCourse } from "@/lib/data"
 import { UploadButton } from "@/lib/uploadthing"
-import { useState } from "react"
 import { useForm } from "react-hook-form"
 import {
   Select,
